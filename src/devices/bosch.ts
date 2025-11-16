@@ -709,11 +709,11 @@ export const definitions: DefinitionWithExtend[] = [
                     payload.mode_command_topic = payload.mode_command_topic.substring(0, payload.mode_command_topic.lastIndexOf("/system_mode"));
                     payload.mode_command_template =
                         "{% set values = " +
-                        `{ 'auto':'schedule','heat':'manual','off':'pause'} %}` +
+                        `{ 'auto':'schedule', 'heat':'manual', 'off':'pause' } %}` +
                         `{"operating_mode": "{{ values[value] if value in values.keys() else 'pause' }}"}`;
                     payload.mode_state_template =
                         "{% set values = " +
-                        `{'schedule':'auto','manual':'heat','pause':'off'} %}` +
+                        `{ 'schedule':'auto', 'manual':'heat', 'pause':'off' } %}` +
                         `{% set value = value_json.operating_mode %}{{ values[value] if value in values.keys() else 'off' }}`;
                     payload.modes = ["off", "heat", "auto"];
                 }
