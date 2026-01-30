@@ -69,6 +69,40 @@ interface PhilipsContact {
 }
 
 const philipsModernExtend = {
+    addCustomClusterManuSpecificPhilips: () =>
+        modernExtend.deviceAddCustomCluster("manuSpecificPhilips", {
+            ID: 0xfc00,
+            manufacturerCode: Zcl.ManufacturerCode.SIGNIFY_NETHERLANDS_B_V,
+            attributes: {
+                config: {ID: 0x0031, type: DataType.BITMAP16, write: true},
+            },
+            commands: {},
+            commandsResponse: {
+                hueNotification: {
+                    ID: 0x00,
+                    parameters: [
+                        {name: "button", type: DataType.UINT8, max: 0xff},
+                        {name: "unknown1", type: DataType.UINT24, max: 0xffffff},
+                        {name: "type", type: DataType.UINT8, max: 0xff},
+                        {name: "unknown2", type: DataType.UINT8, max: 0xff},
+                        {name: "time", type: DataType.UINT8, max: 0xff},
+                        {name: "unknown3", type: DataType.UINT8, max: 0xff},
+                    ],
+                },
+            },
+        }),
+    addCustomClusterManuSpecificPhilips2: () =>
+        modernExtend.deviceAddCustomCluster("manuSpecificPhilips2", {
+            ID: 0xfc03,
+            manufacturerCode: Zcl.ManufacturerCode.SIGNIFY_NETHERLANDS_B_V,
+            attributes: {
+                state: {ID: 0x0002, type: DataType.OCTET_STR, write: true},
+            },
+            commands: {
+                multiColor: {ID: 0x00, parameters: [{name: "data", type: BuffaloZclDataType.BUFFER}]},
+            },
+            commandsResponse: {},
+        }),
     addCustomClusterManuSpecificPhilipsContact: () =>
         modernExtend.deviceAddCustomCluster("manuSpecificPhilipsContact", {
             ID: 0xfc06,
